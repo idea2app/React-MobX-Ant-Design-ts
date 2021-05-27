@@ -4,6 +4,7 @@
     "module": "ES2020",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
     "jsx": "react",
     "lib": ["ES2020", "DOM"]
   }

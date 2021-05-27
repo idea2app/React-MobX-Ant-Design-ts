@@ -11,13 +11,21 @@
     "url": "https://github.com/idea2app/React-MobX-Ant-Design-ts/issues"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "antd": "^4.16.0",
+    "mobx": "^5.15.7",
+    "mobx-react": "^6.3.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@snowpack/plugin-react-refresh": "^2.5.0",
     "@snowpack/plugin-typescript": "^1.2.1",
     "@types/react-dom": "^17.0.5",
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.7",
     "snowpack": "^3.3.7",
     "typescript": "^4.3.2"
   },

@@ -1,6 +1,10 @@
-# New Project
+# React-MobX-Ant-Design.ts
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+[React][1] project scaffold based on [TypeScript][2], [MobX][3] & [Ant Design][4],
+which is inspired by [WebCell scaffold][5].
+
+[![NPM Dependency](https://david-dm.org/idea2app/React-MobX-Ant-Design-ts.svg)][6]
+[![CI & CD](https://github.com/idea2app/React-MobX-Ant-Design-ts/workflows/CI%20&%20CD/badge.svg)][7]
 
 ## Available Scripts
 
@@ -22,3 +26,11 @@ Your app is ready to be deployed!
 ### Q: What about Eject?
 
 No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+
+[1]: https://reactjs.org/
+[2]: https://www.typescriptlang.org/
+[3]: https://mobx.js.org/
+[4]: https://ant.design/
+[5]: https://github.com/EasyWebApp/scaffold
+[6]: https://david-dm.org/idea2app/React-MobX-Ant-Design-ts
+[7]: https://github.com/idea2app/React-MobX-Ant-Design-ts/actions
