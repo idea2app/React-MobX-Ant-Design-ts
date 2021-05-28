@@ -8,6 +8,7 @@ import Form from "antd/es/form/Form";
 import FormItem from "antd/es/form/FormItem";
 import Input from "antd/es/input";
 import Button from "antd/es/button";
+import Avatar from "antd/es/avatar";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 import user from "../model/User";
@@ -36,14 +37,14 @@ export class PageBox extends PureComponent<PropsWithChildren<{}>> {
           React-MobX-Ant-Design.ts
         </h1>
         <Form onFinish={(data) => user.signIn(data)}>
-          <FormItem name="account">
-            <Input addonBefore={<UserOutlined />} placeholder="test" />
+          <FormItem name="account" required>
+            <Input addonBefore={<UserOutlined />} placeholder="admin" />
           </FormItem>
-          <FormItem name="key">
+          <FormItem name="key" required>
             <Input
               type="password"
               addonBefore={<LockOutlined />}
-              placeholder="123456"
+              placeholder="19890604"
             />
           </FormItem>
           <Button htmlType="submit" type="primary" block>
@@ -74,7 +75,7 @@ export class PageBox extends PureComponent<PropsWithChildren<{}>> {
             src="https://github.com/ant-design.png"
           />
           <Menu mode="horizontal" theme="dark" style={{ flex: 1 }}>
-            <Menu.Item>
+            <Menu.Item key="source-code">
               <a
                 target="_blank"
                 href="https://github.com/idea2app/React-MobX-Ant-Design-ts"
@@ -86,13 +87,13 @@ export class PageBox extends PureComponent<PropsWithChildren<{}>> {
           <Dropdown
             overlay={
               <Menu>
-                <Menu.Item onClick={() => user.signOut()}>退出登录</Menu.Item>
+                <Menu.Item key="exit" onClick={() => user.signOut()}>
+                  Exit
+                </Menu.Item>
               </Menu>
             }
           >
-            <div style={{ color: "white", padding: "0 1rem" }}>
-              {session.account}
-            </div>
+            <Avatar src={session.avatar}>{session.account}</Avatar>
           </Dropdown>
         </Header>
 

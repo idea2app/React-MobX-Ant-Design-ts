@@ -15,8 +15,15 @@ export class UserModel {
   @observable
   session?: User = store["session"] && JSON.parse(store["session"]);
 
-  signIn({ account }: Passport) {
-    store["session"] = JSON.stringify((this.session = { account }));
+  async signIn({ account, key }: Passport) {
+    if (account !== "admin" || key !== "19890604")
+      throw new URIError("The key can't be forgotten!");
+
+    this.session = {
+      account,
+      avatar: "https://github.com/idea2app.png",
+    };
+    store["session"] = JSON.stringify(this.session);
   }
 
   signOut() {
