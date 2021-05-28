@@ -27,12 +27,24 @@
     "@types/react-dom": "^17.0.5",
     "@types/react-router": "^5.1.14",
     "@types/react-router-dom": "^5.1.7",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
     "snowpack": "^3.3.7",
     "typescript": "^4.3.2"
   },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  },
+  "lint-staged": {
+    "*.{html,md,less,json,yml,js,ts,tsx}": "prettier --write"
+  },
   "scripts": {
+    "prepare": "husky install",
+    "test": "lint-staged",
     "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "echo \"This template does not include a test runner by default.\" && exit 1"
+    "build": "rm -rf build/  &&  snowpack build"
   }
 }

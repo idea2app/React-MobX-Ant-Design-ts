@@ -2,3 +2,4 @@ node_modules/
 package-lock.json
 .snowpack
 build/
+.husky/_/
