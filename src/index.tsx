@@ -1,14 +1,29 @@
-import React from "react";
-import { render } from "react-dom";
-import "antd/dist/antd.css";
-import message from "antd/es/message";
+import { auto } from 'browser-unhandled-rejection';
+import { serviceWorkerUpdate } from 'web-utility';
+import { render } from 'react-dom';
+import message from 'antd/es/message';
 
-import PageRoot from "./page";
+import PageRoot from './page';
 
-globalThis.addEventListener("unhandledrejection", ({ reason }) => {
+auto();
+
+globalThis.addEventListener('unhandledrejection', ({ reason }) => {
   if (reason instanceof URIError) message.error(reason.message);
 });
 
-render(<PageRoot />, document.querySelector("main"));
-// @ts-ignore
-if (import.meta.hot) import.meta.hot.accept();
+const { serviceWorker } = window.navigator;
+
+if (process.env.NODE_ENV !== 'development')
+  serviceWorker
+    ?.register('sw.js')
+    .then(serviceWorkerUpdate)
+    .then(worker => {
+      if (window.confirm('New version of this Web App detected, update now?'))
+        worker.postMessage({ type: 'SKIP_WAITING' });
+    });
+
+serviceWorker?.addEventListener('controllerchange', () =>
+  window.location.reload()
+);
+
+render(<PageRoot />, document.querySelector('main'));

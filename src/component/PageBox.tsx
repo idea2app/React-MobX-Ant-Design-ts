@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, PureComponent } from 'react';
+import { PropsWithChildren, PureComponent } from 'react';
 import { observer } from 'mobx-react';
 
 import Layout, { Content, Footer, Header } from 'antd/es/layout/layout';

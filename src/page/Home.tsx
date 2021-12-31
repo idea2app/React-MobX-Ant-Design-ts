@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { observer } from 'mobx-react';
 import Row from 'antd/es/grid/row';
 import Col from 'antd/es/grid/col';

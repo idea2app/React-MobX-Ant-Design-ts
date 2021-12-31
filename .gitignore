@@ -1,5 +1,4 @@
 node_modules/
 package-lock.json
-.snowpack
-build/
-.husky/_/
+.parcel-cache/
+dist/
