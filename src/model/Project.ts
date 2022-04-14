@@ -11,6 +11,10 @@ export class ProjectModel {
   @observable
   list: Project[] = [];
 
+  clearList() {
+    this.list = [];
+  }
+
   async getList(...names: string[]) {
     for (const name of names) {
       const data = await request<Project>(

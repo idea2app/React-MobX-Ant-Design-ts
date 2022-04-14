@@ -104,8 +104,8 @@ export class PageBox extends PureComponent<PageBoxProps> {
         </Content>
 
         <Footer style={{ textAlign: 'center' }}>
-          ©2021{' '}
-          <a target="_blank" href="https://ideapp.dev/">
+          ©2021-{new Date().getFullYear()}
+          <a className="ms-2" target="_blank" href="https://ideapp.dev/">
             idea2app
           </a>
         </Footer>

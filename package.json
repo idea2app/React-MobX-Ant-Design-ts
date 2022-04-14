@@ -12,27 +12,29 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.18.2",
+    "antd": "^4.19.5",
     "browser-unhandled-rejection": "^1.0.2",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router": "^6.2.1",
-    "react-router-dom": "^6.2.1",
-    "web-utility": "^2.9.6"
+    "react-router": "^6.3.0",
+    "react-router-class-tools": "^0.1.2",
+    "react-router-dom": "^6.3.0",
+    "web-utility": "^3.6.1"
   },
   "devDependencies": {
     "@octokit/openapi-types": "^11.2.0",
-    "@parcel/packager-raw-url": "^2.0.1",
-    "@parcel/transformer-webmanifest": "^2.0.1",
-    "@types/react-dom": "^17.0.11",
+    "@parcel/packager-raw-url": "^2.4.1",
+    "@parcel/transformer-webmanifest": "^2.4.1",
+    "@types/react-dom": "^17.0.15",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.4",
-    "parcel": "^2.0.1",
-    "prettier": "^2.5.1",
+    "lint-staged": "^12.3.7",
+    "parcel": "^2.4.1",
+    "prettier": "^2.6.2",
+    "process": "^0.11.10",
     "typescript": "~4.4.4",
-    "workbox-cli": "^6.4.2"
+    "workbox-cli": "^6.5.3"
   },
   "prettier": {
     "singleQuote": true,

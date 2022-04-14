@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import { HomePage } from './Home';
+import HomePage from './Home';
 
 export default () => (
   <HashRouter>
