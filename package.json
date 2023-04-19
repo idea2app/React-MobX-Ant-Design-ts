@@ -11,30 +11,30 @@
     "url": "https://github.com/idea2app/React-MobX-Ant-Design-ts/issues"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "antd": "^4.19.5",
+    "@ant-design/icons": "^4.8.0",
+    "antd": "^4.24.8",
     "browser-unhandled-rejection": "^1.0.2",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router": "^6.3.0",
+    "react-router": "^6.10.0",
     "react-router-class-tools": "^0.1.2",
-    "react-router-dom": "^6.3.0",
-    "web-utility": "^3.6.1"
+    "react-router-dom": "^6.10.0",
+    "web-utility": "^4.0.0"
   },
   "devDependencies": {
-    "@octokit/openapi-types": "^11.2.0",
-    "@parcel/packager-raw-url": "^2.4.1",
-    "@parcel/transformer-webmanifest": "^2.4.1",
-    "@types/react-dom": "^17.0.15",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.7",
-    "parcel": "^2.4.1",
-    "prettier": "^2.6.2",
+    "@octokit/openapi-types": "^16.0.0",
+    "@parcel/packager-raw-url": "~2.8.3",
+    "@parcel/transformer-webmanifest": "~2.8.3",
+    "@types/react-dom": "^17.0.19",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "parcel": "~2.8.3",
+    "prettier": "^2.8.7",
     "process": "^0.11.10",
-    "typescript": "~4.4.4",
-    "workbox-cli": "^6.5.3"
+    "typescript": "~5.0.4",
+    "workbox-cli": "^6.5.4"
   },
   "prettier": {
     "singleQuote": true,

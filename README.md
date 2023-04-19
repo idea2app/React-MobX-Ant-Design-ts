@@ -7,7 +7,7 @@ which is inspired by [WebCell scaffold][5].
 
 ## Technology stack
 
-- Language: [TypeScript v4][2]
+- Language: [TypeScript v5][2]
 - Component engine: [React 17][1]
 - State management: [MobX v5][3]
 - Component suite: [Ant Design v4][4] + [Bootstrap v5][6] (CSS utilities)
@@ -19,7 +19,9 @@ which is inspired by [WebCell scaffold][5].
 ## Development
 
 ```shell
-npm install
+npm i pnpm -g
+
+pnpm i
 
 npm start
 ```
@@ -27,7 +29,7 @@ npm start
 ## Deployment
 
 ```shell
-npm run build
+pnpm build
 ```
 
 [1]: https://reactjs.org/
