@@ -12,10 +12,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "antd": "^4.24.8",
+    "antd": "^4.24.9",
     "browser-unhandled-rejection": "^1.0.2",
+    "koajax": "^0.8.4",
+    "lodash": "^4.17.21",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.1",
+    "mobx-restful": "^0.6.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.10.0",
@@ -24,9 +27,12 @@
     "web-utility": "^4.0.0"
   },
   "devDependencies": {
-    "@octokit/openapi-types": "^16.0.0",
+    "@octokit/openapi-types": "^17.0.0",
     "@parcel/packager-raw-url": "~2.8.3",
     "@parcel/transformer-webmanifest": "~2.8.3",
+    "@types/lodash": "^4.14.194",
+    "@types/node": "^16.18.24",
+    "@types/react": "^17.0.58",
     "@types/react-dom": "^17.0.19",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",

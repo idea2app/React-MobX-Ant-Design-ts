@@ -1,9 +1,7 @@
-import { PureComponent } from 'react';
+import { Card, Col, Row } from 'antd';
 import { observer } from 'mobx-react';
+import { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
-import Row from 'antd/es/grid/row';
-import Col from 'antd/es/grid/col';
-import Card from 'antd/es/card';
 
 import { PageBox } from '../component/PageBox';
 import project from '../model/Project';
