@@ -1,15 +1,8 @@
-import { PropsWithChildren, PureComponent } from 'react';
-import { observer } from 'mobx-react';
-
-import Layout, { Content, Footer, Header } from 'antd/es/layout/layout';
-import Menu from 'antd/es/menu';
-import Dropdown from 'antd/es/dropdown';
-import Form from 'antd/es/form/Form';
-import FormItem from 'antd/es/form/FormItem';
-import Input from 'antd/es/input';
-import Button from 'antd/es/button';
-import Avatar from 'antd/es/avatar';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Dropdown, Form, Input, Layout, Menu } from 'antd';
+import { observer } from 'mobx-react';
+import { PropsWithChildren, PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import user from '../model/User';
 
@@ -39,16 +32,16 @@ export class PageBox extends PureComponent<PageBoxProps> {
           React-MobX-Ant-Design.ts
         </h1>
         <Form onFinish={data => user.signIn(data)}>
-          <FormItem name="account" required>
+          <Form.Item name="account" required>
             <Input addonBefore={<UserOutlined />} placeholder="admin" />
-          </FormItem>
-          <FormItem name="key" required>
+          </Form.Item>
+          <Form.Item name="key" required>
             <Input
               type="password"
               addonBefore={<LockOutlined />}
               placeholder="19890604"
             />
-          </FormItem>
+          </Form.Item>
           <Button htmlType="submit" type="primary" block>
             登录
           </Button>
@@ -65,7 +58,7 @@ export class PageBox extends PureComponent<PageBoxProps> {
       this.renderSignIn()
     ) : (
       <Layout>
-        <Header
+        <Layout.Header
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -77,6 +70,9 @@ export class PageBox extends PureComponent<PageBoxProps> {
             src="https://github.com/ant-design.png"
           />
           <Menu mode="horizontal" theme="dark" style={{ flex: 1 }}>
+            <Menu.Item key="pagination">
+              <Link to="/pagination">Pagination</Link>
+            </Menu.Item>
             <Menu.Item key="source-code">
               <a
                 target="_blank"
@@ -97,18 +93,20 @@ export class PageBox extends PureComponent<PageBoxProps> {
           >
             <Avatar src={session.avatar}>{session.account}</Avatar>
           </Dropdown>
-        </Header>
+        </Layout.Header>
 
-        <Content style={{ width: narrow ? '90vw' : '100vw', margin: 'auto' }}>
+        <Layout.Content
+          style={{ width: narrow ? '90vw' : '100vw', margin: 'auto' }}
+        >
           {children}
-        </Content>
+        </Layout.Content>
 
-        <Footer style={{ textAlign: 'center' }}>
+        <Layout.Footer style={{ textAlign: 'center' }}>
           ©2021-{new Date().getFullYear()}
           <a className="ms-2" target="_blank" href="https://ideapp.dev/">
             idea2app
           </a>
-        </Footer>
+        </Layout.Footer>
       </Layout>
     );
   }

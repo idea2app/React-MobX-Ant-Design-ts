@@ -1,7 +1,7 @@
 import { auto } from 'browser-unhandled-rejection';
 import { serviceWorkerUpdate } from 'web-utility';
 import { render } from 'react-dom';
-import message from 'antd/es/message';
+import { message } from 'antd';
 
 import PageRoot from './page';
 

@@ -35,7 +35,7 @@ pnpm build
 [1]: https://reactjs.org/
 [2]: https://www.typescriptlang.org/
 [3]: https://mobx.js.org/
-[4]: https://ant.design/
+[4]: https://4x.ant.design/
 [5]: https://github.com/EasyWebApp/scaffold
 [6]: https://getbootstrap.com/
 [7]: https://github.com/idea2app/React-MobX-Ant-Design-ts/actions/workflows/main.yml
