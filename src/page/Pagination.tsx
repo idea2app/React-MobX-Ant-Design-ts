@@ -33,7 +33,7 @@ export class PaginationPage extends PureComponent {
   render() {
     return (
       <PageBox>
-        <RestTable columns={this.columns} store={repositoryStore} />
+        <RestTable editable columns={this.columns} store={repositoryStore} />
       </PageBox>
     );
   }
