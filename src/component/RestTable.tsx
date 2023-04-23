@@ -33,29 +33,34 @@ export class RestTable<T extends DataObject> extends PureComponent<
 
   closeEditor = () => (this.editingId = undefined);
 
+  get fields(): Column<T>[] {
+    return this.props.columns.map(
+      ({ key, dataIndex = key, type, title = key, render, ...column }) => ({
+        ...column,
+        key,
+        dataIndex,
+        title,
+        type,
+        render:
+          render ||
+          (value =>
+            type === 'url' ? (
+              <a target="_blank" href={value}>
+                {value}
+              </a>
+            ) : (
+              value
+            ))
+      })
+    );
+  }
+
   get columns(): Column<T>[] {
-    const { columns, store, editable } = this.props;
+    const { store, editable } = this.props;
 
     return [
-      ...columns.map(
-        ({ key, dataIndex = key, type, title = key, render, ...column }) => ({
-          ...column,
-          key,
-          dataIndex,
-          title,
-          type,
-          render:
-            render ||
-            (value =>
-              type === 'url' ? (
-                <a target="_blank" href={value}>
-                  {value}
-                </a>
-              ) : (
-                value
-              ))
-        })
-      ),
+      ...this.fields,
+
       editable && {
         key: 'edit',
         render: (_, { [store.indexKey]: ID }) => (
@@ -69,18 +74,18 @@ export class RestTable<T extends DataObject> extends PureComponent<
 
   renderDialog() {
     const { store } = this.props,
-      { columns, editingId } = this;
-    const editing = this.editingId != null,
-      currentTitle = store.currentOne[store.indexKey];
+      { fields, editingId } = this;
+    const currentTitle = store.currentOne[store.indexKey];
 
     return (
       <Modal
+        destroyOnClose
         title={currentTitle}
-        open={editing}
+        open={editingId != null}
         onOk={this.closeEditor}
         onCancel={this.closeEditor}
       >
-        {editing && <RestForm id={editingId} fields={columns} store={store} />}
+        <RestForm id={editingId} {...{ fields, store }} />
       </Modal>
     );
   }

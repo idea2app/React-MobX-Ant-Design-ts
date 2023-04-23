@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
 import { InputHTMLAttributes, PureComponent } from 'react';
 
+import { Spinner } from './Spinner';
+
 export interface Field
   extends Pick<
     InputHTMLAttributes<HTMLInputElement>,
@@ -15,6 +17,7 @@ export interface Field
     | 'minLength'
     | 'maxLength'
     | 'pattern'
+    | 'readOnly'
   > {
   key?: string;
 }
@@ -41,17 +44,19 @@ export class RestForm<T extends DataObject> extends PureComponent<
 
   render() {
     const { id, fields, store, ...props } = this.props;
-    const { currentOne } = store;
+    const { downloading, currentOne } = store;
 
     return (
       <Form {...props}>
-        {fields.map(({ key, title, ...props }, index) => (
-          <Form.Item key={key || index} label={title} labelCol={{ span: 6 }}>
-            {(!id || currentOne[key]) && (
+        {downloading > 0 ? (
+          <Spinner />
+        ) : (
+          fields.map(({ key, title, ...props }, index) => (
+            <Form.Item key={key || index} label={title} labelCol={{ span: 6 }}>
               <Input {...props} name={key} defaultValue={currentOne[key]} />
-            )}
-          </Form.Item>
-        ))}
+            </Form.Item>
+          ))
+        )}
       </Form>
     );
   }
