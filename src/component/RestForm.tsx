@@ -1,7 +1,8 @@
-import { Form, FormProps, Input } from 'antd';
+import { Button, Form, FormProps, Input } from 'antd';
 import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
-import { InputHTMLAttributes, PureComponent } from 'react';
+import { FormEvent, InputHTMLAttributes, PureComponent } from 'react';
+import { formToJSON } from 'web-utility';
 
 import { Spinner } from './Spinner';
 
@@ -42,12 +43,24 @@ export class RestForm<T extends DataObject> extends PureComponent<
     if (id) store.getOne(id);
   }
 
+  componentWillUnmount() {
+    this.props.store.clearCurrent();
+  }
+
+  handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const data = formToJSON(event.currentTarget);
+
+    console.log(data);
+  };
+
   render() {
     const { id, fields, store, ...props } = this.props;
     const { downloading, currentOne } = store;
 
     return (
-      <Form {...props}>
+      <Form {...props} onSubmitCapture={this.handleSubmit}>
         {downloading > 0 ? (
           <Spinner />
         ) : (
@@ -57,6 +70,12 @@ export class RestForm<T extends DataObject> extends PureComponent<
             </Form.Item>
           ))
         )}
+        <footer className="d-flex justify-content-end gap-3">
+          <Button htmlType="reset">x</Button>
+          <Button htmlType="submit" type="primary">
+            √
+          </Button>
+        </footer>
       </Form>
     );
   }
