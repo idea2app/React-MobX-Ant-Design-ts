@@ -1,8 +1,8 @@
 {
   "name": "@idea2app/react-mobx-ant-design-ts",
-  "version": "0.3.0",
+  "version": "0.8.0",
   "author": "shiy2008@gmail.com",
-  "homepage": "https://ideapp.dev/React-MobX-Ant-Design-ts/",
+  "homepage": "https://idea2app.github.io/React-MobX-Ant-Design-ts/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idea2app/React-MobX-Ant-Design-ts.git"
@@ -17,6 +17,7 @@
     "koajax": "^0.8.4",
     "lodash": "^4.17.21",
     "mobx": "^5.15.7",
+    "mobx-i18n": "^0.3.14",
     "mobx-react": "^6.3.1",
     "mobx-restful": "^0.6.3",
     "react": "^17.0.2",

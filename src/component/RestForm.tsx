@@ -1,4 +1,5 @@
 import { Button, Form, FormProps, Input } from 'antd';
+import { TranslationModel } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
 import { FormEvent, InputHTMLAttributes, PureComponent } from 'react';
@@ -26,8 +27,9 @@ export interface Field
 export interface RestFormProps<T extends DataObject>
   extends Omit<FormProps, 'id' | 'fields'> {
   id?: IDType;
-  fields: Field[];
+  translator: TranslationModel<string, 'submit' | 'cancel'>;
   store: ListModel<T>;
+  fields: Field[];
 }
 
 /**
@@ -56,8 +58,9 @@ export class RestForm<T extends DataObject> extends PureComponent<
   };
 
   render() {
-    const { id, fields, store, ...props } = this.props;
-    const { downloading, currentOne } = store;
+    const { id, fields, store, translator, ...props } = this.props;
+    const { t } = translator,
+      { downloading, currentOne } = store;
 
     return (
       <Form {...props} onSubmitCapture={this.handleSubmit}>
@@ -71,9 +74,9 @@ export class RestForm<T extends DataObject> extends PureComponent<
           ))
         )}
         <footer className="d-flex justify-content-end gap-3">
-          <Button htmlType="reset">x</Button>
+          <Button htmlType="reset">{t('cancel')}</Button>
           <Button htmlType="submit" type="primary">
-            √
+            {t('submit')}
           </Button>
         </footer>
       </Form>

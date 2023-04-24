@@ -3,8 +3,10 @@ import { observer } from 'mobx-react';
 import { PureComponent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
 
-import { PageBox } from '../component/PageBox';
 import project from '../model/Project';
+import { i18n } from '../model/Translation';
+
+const { t } = i18n;
 
 @observer
 class HomePage extends PureComponent<
@@ -28,25 +30,24 @@ class HomePage extends PureComponent<
       { list } = project;
 
     return (
-      <PageBox narrow>
-        <h1>Upstream projects</h1>
+      <>
+        <h1>{t('upstream_projects')}</h1>
 
-        {guest && <h2>Welcome {guest}!</h2>}
-
+        {guest && (
+          <h2>
+            {t('welcome')} {guest}!
+          </h2>
+        )}
         <Row gutter={16}>
           {list.map(({ name, logo, description }) => (
             <Col key={name} span={6}>
-              <Card
-                hoverable
-                style={{ height: '100%' }}
-                cover={<img src={logo} />}
-              >
+              <Card hoverable className="h-100" cover={<img src={logo} />}>
                 <Card.Meta title={name} description={description} />
               </Card>
             </Col>
           ))}
         </Row>
-      </PageBox>
+      </>
     );
   }
 }

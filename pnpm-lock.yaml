@@ -19,6 +19,9 @@ dependencies:
   mobx:
     specifier: ^5.15.7
     version: 5.15.7
+  mobx-i18n:
+    specifier: ^0.3.14
+    version: 0.3.14(mobx@5.15.7)
   mobx-react:
     specifier: ^6.3.1
     version: 6.3.1(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2)
@@ -4500,6 +4503,16 @@ packages:
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
+
+  /mobx-i18n@0.3.14(mobx@5.15.7):
+    resolution: {integrity: sha512-aP+o74dqr+cXrskGIdC3z2GoIJY2DHcKtLtyXxy97CTEfcnv5KVm/K5f7PiRL5goiHrZq7Vc9DuOU7PG0mk8nQ==}
+    peerDependencies:
+      mobx: '>=4 <6'
+    dependencies:
+      '@swc/helpers': 0.4.14
+      mobx: 5.15.7
+      regenerator-runtime: 0.13.11
+    dev: false
 
   /mobx-react-lite@2.2.2(mobx@5.15.7)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-2SlXALHIkyUPDsV4VTKVR9DW7K3Ksh1aaIv3NrNJygTbhXe2A9GrcKHZ2ovIiOp/BXilOcTYemfHHZubP431dg==}
