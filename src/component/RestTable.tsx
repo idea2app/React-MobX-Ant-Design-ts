@@ -1,5 +1,4 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, message, Modal, Space, Table, TableProps } from 'antd';
+import { Button, Modal, Space, Table, TableProps, message } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { TableRowSelection } from 'antd/lib/table/interface';
 import { observable } from 'mobx';
@@ -7,14 +6,20 @@ import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
 import { PureComponent } from 'react';
 
-import { Field, RestForm } from './RestForm';
+import { TranslationModel } from 'mobx-i18n';
+import { Field, RestForm, RestFormProps } from './RestForm';
 
 export type Column<T extends DataObject> = Omit<ColumnType<T>, 'key'> & Field;
 
 export interface RestTableProps<T extends DataObject>
   extends Omit<TableProps<T>, 'columns'> {
-  columns: Column<T>[];
+  translator: RestFormProps<T>['translator'] &
+    TranslationModel<
+      string,
+      'create' | 'edit' | 'delete' | 'total_x_rows' | 'sure_to_delete_x'
+    >;
   store: ListModel<T>;
+  columns: Column<T>[];
   editable?: boolean;
   deletable?: boolean;
   onCheck?: (IDs: T[keyof T][]) => any;
@@ -66,7 +71,8 @@ export class RestTable<T extends DataObject> extends PureComponent<
   }
 
   get columns(): Column<T>[] {
-    const { store, editable, deletable } = this.props;
+    const { store, translator, editable, deletable } = this.props;
+    const { t } = translator;
 
     return [
       ...this.fields,
@@ -76,13 +82,19 @@ export class RestTable<T extends DataObject> extends PureComponent<
         render: (_, { [store.indexKey]: ID }) => (
           <Space>
             {editable && (
-              <Button onClick={() => (this.editingId = ID)}>
-                <EditOutlined />
+              <Button
+                className="bg-warning"
+                onClick={() => (this.editingId = ID)}
+              >
+                {t('edit')}
               </Button>
             )}
             {deletable && (
-              <Button onClick={() => this.delete([ID])}>
-                <DeleteOutlined />
+              <Button
+                className="bg-danger text-white"
+                onClick={() => this.delete([ID])}
+              >
+                {t('delete')}
               </Button>
             )}
           </Space>
@@ -99,19 +111,29 @@ export class RestTable<T extends DataObject> extends PureComponent<
     onCheck?.(this.checkedKeys);
   };
 
-  async delete(IDs: T[keyof T][]) {
+  async delete(keys: T[keyof T][]) {
+    const { translator, store } = this.props;
+
     await new Promise((onOk, onCancel) =>
-      Modal.confirm({ content: IDs.join(), onOk, onCancel })
+      Modal.confirm({
+        content: translator.t('sure_to_delete_x', { keys }),
+        onOk,
+        onCancel
+      })
     );
-    for (const ID of IDs) await this.props.store.deleteOne(ID);
+    for (const ID of keys) await store.deleteOne(ID);
 
     message.success('√');
   }
 
   renderDialog() {
-    const { store } = this.props,
+    const { id, store, translator } = this.props,
       { fields, editingId } = this;
-    const currentTitle = store.currentOne[store.indexKey];
+    const { t } = translator;
+
+    const currentTitle = `${id ? t('edit') : t('create')} ${
+      store.currentOne[store.indexKey] || ''
+    }`;
 
     return (
       <Modal
@@ -123,7 +145,7 @@ export class RestTable<T extends DataObject> extends PureComponent<
       >
         <RestForm
           id={editingId}
-          {...{ fields, store }}
+          {...{ fields, store, translator }}
           onReset={this.closeEditor}
         />
       </Modal>
@@ -133,14 +155,18 @@ export class RestTable<T extends DataObject> extends PureComponent<
   render() {
     const { columns, store, editable, deletable, onCheck, ...props } =
       this.props;
+
     const checkable = deletable || typeof onCheck === 'function',
-      { downloading, pageSize, pageIndex, totalCount, currentPage } = store;
+      { t } = this.props.translator,
+      { downloading, pageSize, pageIndex, totalCount = 0, currentPage } = store;
 
     return (
       <>
-        <header className="d-flex justify-content-end gap-3 py-3">
+        <header className="d-flex align-items-center gap-3 py-3">
+          <span className="me-auto">{t('total_x_rows', { totalCount })}</span>
+
           <Button type="primary" onClick={() => (this.editingId = 0)}>
-            +
+            {t('create')}
           </Button>
           {deletable && (
             <Button
@@ -148,7 +174,7 @@ export class RestTable<T extends DataObject> extends PureComponent<
               disabled={!this.checkedKeys.length}
               onClick={() => this.delete(this.checkedKeys)}
             >
-              x
+              {t('delete')}
             </Button>
           )}
         </header>

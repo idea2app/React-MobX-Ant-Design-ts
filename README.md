@@ -8,13 +8,20 @@ which is inspired by [WebCell scaffold][5].
 ## Technology stack
 
 - Language: [TypeScript v5][2]
-- Component engine: [React 17][1]
+- Component engine: [React v17][1]
 - State management: [MobX v5][3]
 - Component suite: [Ant Design v4][4] + [Bootstrap v5][6] (CSS utilities)
 - HTTP Client: [KoAJAX][8]
 - PWA framework: [Workbox v6][9]
 - Package bundler: [Parcel v2][10]
 - CI / CD: GitHub [Actions][11] + [Pages][12]
+
+## Extra components
+
+1. [Badge](./src/component/Badge.tsx)
+2. [Spinner](./src/component/Spinner.tsx)
+3. [REST Form](./src/component/RestForm.tsx)
+4. [REST Table](./src/component/RestTable.tsx)
 
 ## Development
 

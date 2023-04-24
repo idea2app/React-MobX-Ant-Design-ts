@@ -1,10 +1,17 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  LockOutlined,
+  TranslationOutlined,
+  UserOutlined
+} from '@ant-design/icons';
 import { Avatar, Button, Dropdown, Form, Input, Layout, Menu } from 'antd';
 import { observer } from 'mobx-react';
 import { PropsWithChildren, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LanguageName, i18n } from '../model/Translation';
 import user from '../model/User';
+
+const { t } = i18n;
 
 export type PageBoxProps = PropsWithChildren<{ narrow?: boolean }>;
 
@@ -13,20 +20,16 @@ export class PageBox extends PureComponent<PageBoxProps> {
   renderSignIn() {
     return (
       <div
+        className="vw-100 vh-100 d-flex flex-column justify-content-center align-items-center"
         style={{
-          width: '100vw',
-          height: '100vh',
           background:
-            'url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
+            'url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg)'
         }}
       >
         <h1>
           <img
-            style={{ width: '3rem', marginRight: '1rem' }}
+            className="me-1"
+            style={{ width: '3rem' }}
             src="https://github.com/ant-design.png"
           />
           React-MobX-Ant-Design.ts
@@ -50,61 +53,99 @@ export class PageBox extends PureComponent<PageBoxProps> {
     );
   }
 
-  render() {
-    const { narrow, children } = this.props;
-    const { session } = user;
-
-    return !session ? (
-      this.renderSignIn()
-    ) : (
-      <Layout>
-        <Layout.Header
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <img
-            style={{ height: '80%', marginRight: '1rem' }}
-            src="https://github.com/ant-design.png"
-          />
-          <Menu mode="horizontal" theme="dark" style={{ flex: 1 }}>
-            <Menu.Item key="pagination">
-              <Link to="/pagination">Pagination</Link>
-            </Menu.Item>
-            <Menu.Item key="source-code">
+  renderLinks() {
+    return (
+      <Menu
+        className="flex-fill"
+        mode="horizontal"
+        theme="dark"
+        items={[
+          {
+            key: 'pagination',
+            label: <Link to="/pagination">{t('pagination')}</Link>
+          },
+          {
+            key: 'source-code',
+            label: (
               <a
                 target="_blank"
                 href="https://github.com/idea2app/React-MobX-Ant-Design-ts"
               >
-                Source code
+                {t('source_code')}
               </a>
-            </Menu.Item>
-          </Menu>
-          <Dropdown
-            overlay={
-              <Menu>
-                <Menu.Item key="exit" onClick={() => user.signOut()}>
-                  Exit
-                </Menu.Item>
-              </Menu>
-            }
-          >
-            <Avatar src={session.avatar}>{session.account}</Avatar>
-          </Dropdown>
+            )
+          }
+        ]}
+      />
+    );
+  }
+
+  renderUserBar() {
+    const { session } = user;
+
+    return (
+      <div className="d-flex align-items-center gap-3">
+        <Dropdown
+          menu={{
+            items: Object.entries(LanguageName).map(([key, label]) => ({
+              key,
+              label,
+              onClick: () =>
+                i18n.changeLanguage(key as keyof typeof LanguageName)
+            }))
+          }}
+        >
+          <TranslationOutlined className="text-white fs-4" />
+        </Dropdown>
+
+        <Dropdown
+          menu={{
+            items: [
+              { key: 'exit', label: 'Exit', onClick: () => user.signOut() }
+            ]
+          }}
+        >
+          <Avatar src={session.avatar}>{session.account}</Avatar>
+        </Dropdown>
+      </div>
+    );
+  }
+
+  render() {
+    const { narrow, children } = this.props;
+
+    return !user.session ? (
+      this.renderSignIn()
+    ) : (
+      <Layout>
+        <Layout.Header className="d-flex align-items-center justify-content-between">
+          <a className="d-block h-100" href=".">
+            <img
+              className="me-3"
+              style={{ height: '80%' }}
+              src="https://github.com/ant-design.png"
+            />
+          </a>
+          {this.renderLinks()}
+
+          {this.renderUserBar()}
         </Layout.Header>
 
         <Layout.Content
-          style={{ width: narrow ? '90vw' : '100vw', margin: 'auto' }}
+          className="m-auto overflow-auto"
+          style={{ width: narrow ? '90vw' : '100vw' }}
         >
           {children}
         </Layout.Content>
 
-        <Layout.Footer style={{ textAlign: 'center' }}>
+        <Layout.Footer className="text-center">
           ©2021-{new Date().getFullYear()}
-          <a className="ms-2" target="_blank" href="https://ideapp.dev/">
-            idea2app
+          <a
+            className="ms-2"
+            target="_blank"
+            href="https://idea2app.github.io/"
+          >
+            {t('powered_by')} idea2app
           </a>
         </Layout.Footer>
       </Layout>
