@@ -1,6 +1,7 @@
-import { EditOutlined } from '@ant-design/icons';
-import { Button, Modal, Table, TableProps } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, message, Modal, Space, Table, TableProps } from 'antd';
 import { ColumnType } from 'antd/lib/table';
+import { TableRowSelection } from 'antd/lib/table/interface';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
@@ -15,6 +16,8 @@ export interface RestTableProps<T extends DataObject>
   columns: Column<T>[];
   store: ListModel<T>;
   editable?: boolean;
+  deletable?: boolean;
+  onCheck?: (IDs: T[keyof T][]) => any;
 }
 
 /**
@@ -27,8 +30,15 @@ export class RestTable<T extends DataObject> extends PureComponent<
   @observable
   editingId?: IDType;
 
+  @observable
+  checkedKeys: T[keyof T][] = [];
+
   componentDidMount() {
     this.props.store.getList({}, 1);
+  }
+
+  componentWillUnmount() {
+    this.props.store.clear();
   }
 
   closeEditor = () => (this.editingId = undefined);
@@ -56,20 +66,46 @@ export class RestTable<T extends DataObject> extends PureComponent<
   }
 
   get columns(): Column<T>[] {
-    const { store, editable } = this.props;
+    const { store, editable, deletable } = this.props;
 
     return [
       ...this.fields,
 
-      editable && {
+      (editable || deletable) && {
         key: 'edit',
         render: (_, { [store.indexKey]: ID }) => (
-          <Button onClick={() => (this.editingId = ID)}>
-            <EditOutlined />
-          </Button>
+          <Space>
+            {editable && (
+              <Button onClick={() => (this.editingId = ID)}>
+                <EditOutlined />
+              </Button>
+            )}
+            {deletable && (
+              <Button onClick={() => this.delete([ID])}>
+                <DeleteOutlined />
+              </Button>
+            )}
+          </Space>
         )
       }
     ];
+  }
+
+  handleCheck: TableRowSelection<T>['onChange'] = (_, list) => {
+    const { store, onCheck } = this.props;
+
+    this.checkedKeys = list.map(({ [store.indexKey]: ID }) => ID);
+
+    onCheck?.(this.checkedKeys);
+  };
+
+  async delete(IDs: T[keyof T][]) {
+    await new Promise((onOk, onCancel) =>
+      Modal.confirm({ content: IDs.join(), onOk, onCancel })
+    );
+    for (const ID of IDs) await this.props.store.deleteOne(ID);
+
+    message.success('√');
   }
 
   renderDialog() {
@@ -82,24 +118,39 @@ export class RestTable<T extends DataObject> extends PureComponent<
         destroyOnClose
         title={currentTitle}
         open={editingId != null}
-        onOk={this.closeEditor}
+        footer={null}
         onCancel={this.closeEditor}
       >
-        <RestForm id={editingId} {...{ fields, store }} />
+        <RestForm
+          id={editingId}
+          {...{ fields, store }}
+          onReset={this.closeEditor}
+        />
       </Modal>
     );
   }
 
   render() {
-    const { store, ...props } = this.props;
-    const { downloading, pageSize, pageIndex, totalCount, currentPage } = store;
+    const { columns, store, editable, deletable, onCheck, ...props } =
+      this.props;
+    const checkable = deletable || typeof onCheck === 'function',
+      { downloading, pageSize, pageIndex, totalCount, currentPage } = store;
 
     return (
       <>
-        <header className="d-flex justify-content-end">
+        <header className="d-flex justify-content-end gap-3 py-3">
           <Button type="primary" onClick={() => (this.editingId = 0)}>
             +
           </Button>
+          {deletable && (
+            <Button
+              className="bg-danger text-white"
+              disabled={!this.checkedKeys.length}
+              onClick={() => this.delete(this.checkedKeys)}
+            >
+              x
+            </Button>
+          )}
         </header>
         <Table
           {...props}
@@ -113,6 +164,11 @@ export class RestTable<T extends DataObject> extends PureComponent<
             onChange: (page, pageSize) => store.getList({}, page, pageSize)
           }}
           dataSource={currentPage}
+          rowSelection={
+            checkable
+              ? { type: 'checkbox', onChange: this.handleCheck }
+              : undefined
+          }
         />
         {this.renderDialog()}
       </>

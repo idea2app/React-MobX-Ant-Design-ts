@@ -42,7 +42,13 @@ export class PaginationPage extends PureComponent {
   render() {
     return (
       <PageBox>
-        <RestTable editable columns={this.columns} store={repositoryStore} />
+        <RestTable
+          editable
+          deletable
+          columns={this.columns}
+          store={repositoryStore}
+          onCheck={console.log}
+        />
       </PageBox>
     );
   }
