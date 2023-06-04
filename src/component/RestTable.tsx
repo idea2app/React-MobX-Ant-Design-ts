@@ -114,13 +114,8 @@ export class RestTable<T extends DataObject> extends PureComponent<
   async delete(keys: T[keyof T][]) {
     const { translator, store } = this.props;
 
-    await new Promise((onOk, onCancel) =>
-      Modal.confirm({
-        content: translator.t('sure_to_delete_x', { keys }),
-        onOk,
-        onCancel
-      })
-    );
+    if (!confirm(translator.t('sure_to_delete_x', { keys }))) return;
+
     for (const ID of keys) await store.deleteOne(ID);
 
     message.success('√');

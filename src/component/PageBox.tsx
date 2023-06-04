@@ -46,7 +46,7 @@ export class PageBox extends PureComponent<PageBoxProps> {
             />
           </Form.Item>
           <Button htmlType="submit" type="primary" block>
-            登录
+            {t('sign_in')}
           </Button>
         </Form>
       </div>
@@ -63,6 +63,10 @@ export class PageBox extends PureComponent<PageBoxProps> {
           {
             key: 'pagination',
             label: <Link to="/pagination">{t('pagination')}</Link>
+          },
+          {
+            key: 'scroll-list',
+            label: <Link to="/scroll-list">{t('scroll_list')}</Link>
           },
           {
             key: 'source-code',
@@ -101,7 +105,11 @@ export class PageBox extends PureComponent<PageBoxProps> {
         <Dropdown
           menu={{
             items: [
-              { key: 'exit', label: 'Exit', onClick: () => user.signOut() }
+              {
+                key: 'sign_out',
+                label: t('sign_out'),
+                onClick: () => user.signOut()
+              }
             ]
           }}
         >

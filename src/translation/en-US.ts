@@ -13,6 +13,9 @@ export default {
   examples: 'Examples',
   deploy: 'Deploy',
 
+  sign_in: 'Sign in',
+  sign_out: 'Sign out',
+
   // REST table
   create: 'Create',
   submit: 'Submit',
