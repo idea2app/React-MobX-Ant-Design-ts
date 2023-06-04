@@ -13,6 +13,9 @@ export default {
   examples: '示例',
   deploy: '部署',
 
+  sign_in: '登入',
+  sign_out: '登出',
+
   // REST table
   create: '新增',
   submit: '提交',
