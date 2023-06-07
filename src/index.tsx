@@ -2,6 +2,10 @@ import { auto } from 'browser-unhandled-rejection';
 import { serviceWorkerUpdate } from 'web-utility';
 import { render } from 'react-dom';
 import { message } from 'antd';
+import {
+  StyleProvider,
+  legacyLogicalPropertiesTransformer
+} from '@ant-design/cssinjs';
 
 import PageRoot from './page';
 
@@ -26,4 +30,12 @@ serviceWorker?.addEventListener('controllerchange', () =>
   window.location.reload()
 );
 
-render(<PageRoot />, document.querySelector('main'));
+render(
+  <StyleProvider
+    hashPriority="high"
+    transformers={[legacyLogicalPropertiesTransformer]}
+  >
+    <PageRoot />
+  </StyleProvider>,
+  document.querySelector('main')
+);

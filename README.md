@@ -10,9 +10,9 @@ which is inspired by [WebCell scaffold][5].
 - Language: [TypeScript v5][2]
 - Component engine: [React v17][1]
 - State management: [MobX v5][3]
-- Component suite: [Ant Design v4][4] + [Bootstrap v5][6] (CSS utilities)
+- Component suite: [Ant Design v5][4] + [Bootstrap v5][6] (CSS utilities)
 - HTTP Client: [KoAJAX][8]
-- PWA framework: [Workbox v6][9]
+- PWA framework: [Workbox v7][9]
 - Package bundler: [Parcel v2][10]
 - CI / CD: GitHub [Actions][11] + [Pages][12]
 
@@ -42,7 +42,7 @@ pnpm build
 [1]: https://reactjs.org/
 [2]: https://www.typescriptlang.org/
 [3]: https://mobx.js.org/
-[4]: https://4x.ant.design/
+[4]: https://ant.design/
 [5]: https://github.com/EasyWebApp/scaffold
 [6]: https://getbootstrap.com/
 [7]: https://github.com/idea2app/React-MobX-Ant-Design-ts/actions/workflows/main.yml
