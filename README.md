@@ -8,8 +8,8 @@ which is inspired by [WebCell scaffold][5].
 ## Technology stack
 
 - Language: [TypeScript v5][2]
-- Component engine: [React v17][1]
-- State management: [MobX v5][3]
+- Component engine: [React v18][1]
+- State management: [MobX v6][3]
 - Component suite: [Ant Design v5][4] + [Bootstrap v5][6] (CSS utilities)
 - HTTP Client: [KoAJAX][8]
 - PWA framework: [Workbox v7][9]
@@ -39,7 +39,7 @@ npm start
 pnpm build
 ```
 
-[1]: https://reactjs.org/
+[1]: https://react.dev/
 [2]: https://www.typescriptlang.org/
 [3]: https://mobx.js.org/
 [4]: https://ant.design/

@@ -1,5 +1,5 @@
-import { observable } from 'mobx';
 import { components } from '@octokit/openapi-types';
+import { makeObservable, observable } from 'mobx';
 
 import { request } from './service';
 
@@ -8,6 +8,10 @@ export type Project = components['schemas']['minimal-repository'] & {
 };
 
 export class ProjectModel {
+  constructor() {
+    makeObservable(this);
+  }
+
   @observable
   list: Project[] = [];
 

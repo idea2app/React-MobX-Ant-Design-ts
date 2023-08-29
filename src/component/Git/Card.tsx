@@ -22,9 +22,7 @@ export const GitCard = observer(
         description={description}
       />
       <Space className="mt-3" wrap>
-        {topics.map(topic => (
-          <Badge key={topic}>{topic}</Badge>
-        ))}
+        {topics?.map(topic => <Badge key={topic}>{topic}</Badge>)}
       </Space>
     </Card>
   )

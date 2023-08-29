@@ -1,5 +1,6 @@
 import { auto } from 'browser-unhandled-rejection';
 import { serviceWorkerUpdate } from 'web-utility';
+import { configure } from 'mobx';
 import { render } from 'react-dom';
 import { message } from 'antd';
 import {
@@ -10,6 +11,8 @@ import {
 import PageRoot from './page';
 
 auto();
+
+configure({ enforceActions: 'never' });
 
 globalThis.addEventListener('unhandledrejection', ({ reason }) => {
   if (reason instanceof URIError) message.error(reason.message);
