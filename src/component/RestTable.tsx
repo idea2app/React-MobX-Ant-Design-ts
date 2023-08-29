@@ -1,12 +1,13 @@
 import { Button, Modal, Space, Table, TableProps, message } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { TableRowSelection } from 'antd/lib/table/interface';
-import { observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
+import { TranslationModel } from 'mobx-i18n';
 import { observer } from 'mobx-react';
+import { observePropsState } from 'mobx-react-helper';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
 import { PureComponent } from 'react';
 
-import { TranslationModel } from 'mobx-i18n';
 import { Field, RestForm, RestFormProps } from './RestForm';
 
 export type Column<T extends DataObject> = Omit<ColumnType<T>, 'key'> & Field;
@@ -29,11 +30,19 @@ export interface RestTableProps<T extends DataObject>
  * A re-implement of {@link https://github.com/idea2app/MobX-RESTful-table/blob/master/source/RestTable.tsx}
  */
 @observer
+@observePropsState
 export class RestTable<T extends DataObject> extends PureComponent<
   RestTableProps<T>
 > {
+  constructor(props: RestTableProps<T>) {
+    super(props);
+    makeObservable(this);
+  }
+
+  declare observedProps: RestTableProps<T>;
+
   @observable
-  editingId?: IDType;
+  editingId?: IDType = undefined;
 
   @observable
   checkedKeys: T[keyof T][] = [];
@@ -48,8 +57,9 @@ export class RestTable<T extends DataObject> extends PureComponent<
 
   closeEditor = () => (this.editingId = undefined);
 
+  @computed
   get fields(): Column<T>[] {
-    return this.props.columns.map(
+    return this.observedProps.columns.map(
       ({ key, dataIndex = key, type, title = key, render, ...column }) => ({
         ...column,
         key,
@@ -70,8 +80,9 @@ export class RestTable<T extends DataObject> extends PureComponent<
     );
   }
 
+  @computed
   get columns(): Column<T>[] {
-    const { store, translator, editable, deletable } = this.props;
+    const { store, translator, editable, deletable } = this.observedProps;
     const { t } = translator;
 
     return [
