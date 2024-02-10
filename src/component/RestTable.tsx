@@ -1,12 +1,12 @@
 import { Button, Modal, Space, Table, TableProps, message } from 'antd';
 import { ColumnType } from 'antd/lib/table';
 import { TableRowSelection } from 'antd/lib/table/interface';
-import { computed, makeObservable, observable } from 'mobx';
+import { computed, observable } from 'mobx';
 import { TranslationModel } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { observePropsState } from 'mobx-react-helper';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 
 import { Field, RestForm, RestFormProps } from './RestForm';
 
@@ -31,21 +31,16 @@ export interface RestTableProps<T extends DataObject>
  */
 @observer
 @observePropsState
-export class RestTable<T extends DataObject> extends PureComponent<
+export class RestTable<T extends DataObject> extends Component<
   RestTableProps<T>
 > {
-  constructor(props: RestTableProps<T>) {
-    super(props);
-    makeObservable(this);
-  }
-
   declare observedProps: RestTableProps<T>;
 
   @observable
-  editingId?: IDType = undefined;
+  accessor editingId: IDType | undefined;
 
   @observable
-  checkedKeys: T[keyof T][] = [];
+  accessor checkedKeys: T[keyof T][] = [];
 
   componentDidMount() {
     this.props.store.getList({}, 1);

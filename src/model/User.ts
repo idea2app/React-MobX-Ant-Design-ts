@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx';
+import { observable } from 'mobx';
 
 export interface Passport {
   account: string;
@@ -12,12 +12,9 @@ export interface User extends Pick<Passport, 'account'> {
 const { localStorage: store } = globalThis;
 
 export class UserModel {
-  constructor() {
-    makeObservable(this);
-  }
-
   @observable
-  session?: User = store['session'] && JSON.parse(store['session']);
+  accessor session: User | undefined =
+    store['session'] && JSON.parse(store['session']);
 
   async signIn({ account, key }: Passport) {
     if (account !== 'admin' || key !== '19890604')

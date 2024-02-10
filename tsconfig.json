@@ -4,8 +4,8 @@
     "module": "ES2020",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
     "jsx": "react-jsx",
-    "lib": ["ES2020", "DOM"]
+    "lib": ["ES2023", "DOM"]
   }
 }
