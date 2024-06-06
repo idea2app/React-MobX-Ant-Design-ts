@@ -2,7 +2,7 @@ import { Button, Form, FormProps, Input } from 'antd';
 import { TranslationModel } from 'mobx-i18n';
 import { observer } from 'mobx-react';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
-import { FormEvent, InputHTMLAttributes, PureComponent } from 'react';
+import { FormEvent, InputHTMLAttributes, Component } from 'react';
 import { formToJSON } from 'web-utility';
 
 import { Spinner } from './Spinner';
@@ -36,7 +36,7 @@ export interface RestFormProps<T extends DataObject>
  * A re-implement of {@link https://github.com/idea2app/MobX-RESTful-table/blob/master/source/RestForm.tsx}
  */
 @observer
-export class RestForm<T extends DataObject> extends PureComponent<
+export class RestForm<T extends DataObject> extends Component<
   RestFormProps<T>
 > {
   componentDidMount() {

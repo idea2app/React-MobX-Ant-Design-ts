@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Button, Dropdown, Form, Input, Layout, Menu } from 'antd';
 import { observer } from 'mobx-react';
-import { PropsWithChildren, PureComponent } from 'react';
+import { PropsWithChildren, Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LanguageName, i18n } from '../model/Translation';
@@ -16,7 +16,7 @@ const { t } = i18n;
 export type PageBoxProps = PropsWithChildren<{ narrow?: boolean }>;
 
 @observer
-export class PageBox extends PureComponent<PageBoxProps> {
+export class PageBox extends Component<PageBoxProps> {
   renderSignIn() {
     return (
       <div

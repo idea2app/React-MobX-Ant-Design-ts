@@ -1,14 +1,14 @@
 import { Avatar } from 'antd';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 
 export interface GitLogoProps {
   name: string;
 }
 
 @observer
-export class GitLogo extends PureComponent<GitLogoProps> {
+export class GitLogo extends Component<GitLogoProps> {
   @observable
   accessor path = '';
 

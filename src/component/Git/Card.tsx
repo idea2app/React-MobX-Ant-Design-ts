@@ -1,13 +1,14 @@
 import { Button, Card, Space } from 'antd';
+import { GitRepository } from 'mobx-github';
 import { observer } from 'mobx-react';
+import { FC } from 'react';
 
-import { GitRepository } from '../../model/Repository';
 import { i18n } from '../../model/Translation';
 import { Badge } from '../Badge';
 import { GitLogo } from './Logo';
 
-export const GitCard = observer(
-  ({ full_name, language, description, topics, homepage }: GitRepository) => (
+export const GitCard: FC<GitRepository> = observer(
+  ({ full_name, language, description, topics, homepage }) => (
     <Card
       className="h-100 mb-3"
       actions={[

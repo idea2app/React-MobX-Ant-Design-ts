@@ -2,7 +2,7 @@ import { Col, Row } from 'antd';
 import { ScrollList } from 'mobx-restful-table';
 
 import { GitCard } from '../component/Git/Card';
-import repositoryStore from '../model/Repository';
+import { repositoryStore } from '../model/service';
 import { i18n } from '../model/Translation';
 
 export const ScrollListPage = () => (

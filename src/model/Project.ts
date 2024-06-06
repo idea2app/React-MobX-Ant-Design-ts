@@ -1,11 +1,11 @@
-import { components } from '@octokit/openapi-types';
 import { observable } from 'mobx';
+import { GitRepository } from 'mobx-github';
 
-import { request } from './service';
+import { repositoryStore } from './service';
 
-export type Project = components['schemas']['minimal-repository'] & {
+export interface Project extends GitRepository {
   logo?: string;
-};
+}
 
 export class ProjectModel {
   @observable
@@ -13,13 +13,12 @@ export class ProjectModel {
 
   clearList() {
     this.list = [];
+    repositoryStore.clear();
   }
 
   async getList(...names: string[]) {
     for (const name of names) {
-      const data = await request<Project>(
-        `https://api.github.com/repos/${name}`
-      );
+      const data = await repositoryStore.getOne(name);
       const logo = await ProjectModel.getLogo(data.owner.login, data.name);
 
       this.list.push({ ...data, logo });
