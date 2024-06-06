@@ -1,16 +1,17 @@
 import { Space } from 'antd';
+import { GitRepository } from 'mobx-github';
 import { observer } from 'mobx-react';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 
 import { Badge } from '../component/Badge';
 import { Column, RestTable } from '../component/RestTable';
-import repositoryStore, { GitRepository } from '../model/Repository';
+import { repositoryStore } from '../model/service';
 import { i18n } from '../model/Translation';
 
 const { t } = i18n;
 
 @observer
-export class PaginationPage extends PureComponent {
+export class PaginationPage extends Component {
   get columns(): Column<GitRepository>[] {
     return [
       {

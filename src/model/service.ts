@@ -1,15 +1,8 @@
-import { HTTPClient } from 'koajax';
-
-export async function request<T>(path: string, method = 'GET') {
-  return (await (await fetch(path, { method })).json()) as T;
-}
+import { RepositoryModel, githubClient } from 'mobx-github';
 
 const GithubToken = process.env.GITHUB_TOKEN;
 
-export const service = new HTTPClient({
-  baseURI: 'https://api.github.com/',
-  responseType: 'json'
-}).use(({ request }, next) => {
+githubClient.use(({ request }, next) => {
   if (GithubToken)
     request.headers = {
       ...request.headers,
@@ -17,3 +10,5 @@ export const service = new HTTPClient({
     };
   return next();
 });
+
+export const repositoryStore = new RepositoryModel('idea2app');
