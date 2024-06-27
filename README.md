@@ -11,7 +11,7 @@ which is inspired by [WebCell scaffold][5].
 ## Technology stack
 
 - Language: [TypeScript v5][2]
-- Component engine: [PReact v10][1]
+- Component engine: [React v18][1]
 - State management: [MobX v6][3]
 - Component suite: [Ant Design v5][4] + [Bootstrap v5][9] (CSS utilities)
 - HTTP Client: [KoAJAX v1][10]

@@ -8,11 +8,6 @@
     "lib": ["ES2023", "DOM"],
     "skipLibCheck": true,
     "baseUrl": "./",
-    "jsx": "react-jsx",
-    "paths": {
-      "react": ["./node_modules/preact/compat/"],
-      "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
-      "react-dom": ["./node_modules/preact/compat/"]
-    }
+    "jsx": "react-jsx"
   }
 }

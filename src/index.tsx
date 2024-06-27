@@ -1,7 +1,7 @@
 import { auto } from 'browser-unhandled-rejection';
 import { serviceWorkerUpdate } from 'web-utility';
 import { configure } from 'mobx';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { message } from 'antd';
 import {
   StyleProvider,
@@ -33,12 +33,11 @@ serviceWorker?.addEventListener('controllerchange', () =>
   window.location.reload()
 );
 
-render(
+createRoot(document.querySelector('main')).render(
   <StyleProvider
     hashPriority="high"
     transformers={[legacyLogicalPropertiesTransformer]}
   >
     <PageRoot />
-  </StyleProvider>,
-  document.querySelector('main')
+  </StyleProvider>
 );
