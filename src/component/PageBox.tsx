@@ -32,7 +32,7 @@ export class PageBox extends Component<PageBoxProps> {
             style={{ width: '3rem' }}
             src="https://github.com/ant-design.png"
           />
-          React-MobX-Ant-Design.ts
+          React-MobX-Ant-Design-ts
         </h1>
         <Form onFinish={data => user.signIn(data)}>
           <Form.Item name="account" required>
@@ -126,7 +126,7 @@ export class PageBox extends Component<PageBoxProps> {
       this.renderSignIn()
     ) : (
       <Layout>
-        <Layout.Header className="d-flex align-items-center justify-content-between">
+        <Layout.Header className="d-flex align-items-center justify-content-between sticky-top">
           <a className="d-block h-100" href=".">
             <img
               className="me-3"
