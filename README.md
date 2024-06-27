@@ -1,4 +1,4 @@
-# React-MobX-Ant-Design.ts
+# React-MobX-Ant-Design-ts
 
 [React][1] project scaffold based on [TypeScript][2], [MobX][3] & [Ant Design][4],
 which is inspired by [WebCell scaffold][5].
