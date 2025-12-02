@@ -95,7 +95,7 @@ export class PageBox extends Component<PageBoxProps> {
               key,
               label,
               onClick: () =>
-                i18n.changeLanguage(key as keyof typeof LanguageName)
+                i18n.loadLanguages(key as keyof typeof LanguageName)
             }))
           }}
         >

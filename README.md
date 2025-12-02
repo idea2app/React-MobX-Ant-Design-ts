@@ -11,10 +11,10 @@ which is inspired by [WebCell scaffold][5].
 ## Technology stack
 
 - Language: [TypeScript v5][2]
-- Component engine: [React v18][1]
+- Component engine: [React v19][1]
 - State management: [MobX v6][3]
-- Component suite: [Ant Design v5][4] + [Bootstrap v5][9] (CSS utilities)
-- HTTP Client: [KoAJAX v1][10]
+- Component suite: [Ant Design v6][4] + [Bootstrap v5][9] (CSS utilities)
+- HTTP Client: [KoAJAX v3][10]
 - PWA framework: [Workbox v7][11]
 - Package bundler: [Parcel v2][12]
 - CI / CD: GitHub [Actions][13] + [Pages][14]
@@ -31,7 +31,6 @@ which is inspired by [WebCell scaffold][5].
 ## Best practice
 
 1.  Install GitHub apps in your organization or account:
-
     1.  [Probot settings][15]: set up Issue labels & Pull Request rules
     2.  [PR badge][16]: set up Online [VS Code][17] editor entries in Pull Request description
 
