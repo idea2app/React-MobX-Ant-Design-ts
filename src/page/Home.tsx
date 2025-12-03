@@ -4,12 +4,11 @@ import { Component } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-class-tools';
 
 import project from '../model/Project';
-import { i18n } from '../model/Translation';
+import { t } from '../model/Translation';
 
-const { t } = i18n;
-
+@withRouter
 @observer
-class HomePage extends Component<
+export class HomePage extends Component<
   RouteComponentProps<{}, {}, { guest: string }>
 > {
   componentDidMount() {
@@ -52,5 +51,3 @@ class HomePage extends Component<
     );
   }
 }
-
-export default withRouter(HomePage);

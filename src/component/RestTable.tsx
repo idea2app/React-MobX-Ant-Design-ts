@@ -4,16 +4,17 @@ import { TableRowSelection } from 'antd/lib/table/interface';
 import { computed, observable } from 'mobx';
 import { TranslationModel } from 'mobx-i18n';
 import { observer } from 'mobx-react';
-import { observePropsState } from 'mobx-react-helper';
+import { ObservedComponent } from 'mobx-react-helper';
 import { DataObject, IDType, ListModel } from 'mobx-restful';
-import { Component } from 'react';
 
 import { Field, RestForm, RestFormProps } from './RestForm';
 
 export type Column<T extends DataObject> = Omit<ColumnType<T>, 'key'> & Field;
 
-export interface RestTableProps<T extends DataObject>
-  extends Omit<TableProps<T>, 'columns'> {
+export interface RestTableProps<T extends DataObject> extends Omit<
+  TableProps<T>,
+  'columns'
+> {
   translator: RestFormProps<T>['translator'] &
     TranslationModel<
       string,
@@ -30,12 +31,9 @@ export interface RestTableProps<T extends DataObject>
  * A re-implement of {@link https://github.com/idea2app/MobX-RESTful-table/blob/master/source/RestTable.tsx}
  */
 @observer
-@observePropsState
-export class RestTable<T extends DataObject> extends Component<
+export class RestTable<T extends DataObject> extends ObservedComponent<
   RestTableProps<T>
 > {
-  declare observedProps: RestTableProps<T>;
-
   @observable
   accessor editingId: IDType | undefined;
 
@@ -158,7 +156,7 @@ export class RestTable<T extends DataObject> extends Component<
       this.props;
 
     const checkable = deletable || typeof onCheck === 'function',
-      { t } = this.props.translator,
+      { t } = props.translator,
       { downloading, pageSize, pageIndex, totalCount = 0, currentPage } = store;
 
     return (

@@ -11,10 +11,10 @@ which is inspired by [WebCell scaffold][5].
 ## Technology stack
 
 - Language: [TypeScript v5][2]
-- Component engine: [React v18][1]
+- Component engine: [React v19][1]
 - State management: [MobX v6][3]
-- Component suite: [Ant Design v5][4] + [Bootstrap v5][9] (CSS utilities)
-- HTTP Client: [KoAJAX v1][10]
+- Component suite: [Ant Design v6][4] + [Bootstrap v5][9] (CSS utilities)
+- HTTP Client: [KoAJAX v3][10]
 - PWA framework: [Workbox v7][11]
 - Package bundler: [Parcel v2][12]
 - CI / CD: GitHub [Actions][13] + [Pages][14]
@@ -31,7 +31,6 @@ which is inspired by [WebCell scaffold][5].
 ## Best practice
 
 1.  Install GitHub apps in your organization or account:
-
     1.  [Probot settings][15]: set up Issue labels & Pull Request rules
     2.  [PR badge][16]: set up Online [VS Code][17] editor entries in Pull Request description
 
@@ -83,6 +82,6 @@ pnpm build
 [18]: https://github.com/new?template_name=React-MobX-Ant-Design-ts&template_owner=idea2app
 [19]: https://github.com/idea2app/React-MobX-Ant-Design-ts/blob/ae6204a04c108eddff7ff5265341676b55918509/.github/workflows/main.yml#L10-L12
 [20]: https://github.com/idea2app/React-MobX-Ant-Design-ts/settings/secrets/actions
-[21]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/blob/bb4675a56bf1d6b207231313da5ed0af7cf0ebd6/.github/workflows/pull-request.yml#L32-L56
+[21]: https://github.com/idea2app/Lark-Next-Bootstrap-ts/blob/5c58fd8c6faf85a89a19a0358c315dc8909098e7/.github/workflows/main.yml#L31-L60
 [22]: https://github.com/idea2app/React-MobX-Ant-Design-ts/issues/new/choose
 [23]: https://github.com/idea2app/React-MobX-Ant-Design-ts/projects
