@@ -6,9 +6,7 @@ import { Component } from 'react';
 import { Badge } from '../component/Badge';
 import { Column, RestTable } from '../component/RestTable';
 import { repositoryStore } from '../model/service';
-import { i18n } from '../model/Translation';
-
-const { t } = i18n;
+import { i18n, t } from '../model/Translation';
 
 @observer
 export class PaginationPage extends Component {

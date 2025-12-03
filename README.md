@@ -82,6 +82,6 @@ pnpm build
 [18]: https://github.com/new?template_name=React-MobX-Ant-Design-ts&template_owner=idea2app
 [19]: https://github.com/idea2app/React-MobX-Ant-Design-ts/blob/ae6204a04c108eddff7ff5265341676b55918509/.github/workflows/main.yml#L10-L12
 [20]: https://github.com/idea2app/React-MobX-Ant-Design-ts/settings/secrets/actions
-[21]: https://github.com/kaiyuanshe/kaiyuanshe.github.io/blob/bb4675a56bf1d6b207231313da5ed0af7cf0ebd6/.github/workflows/pull-request.yml#L32-L56
+[21]: https://github.com/idea2app/Lark-Next-Bootstrap-ts/blob/5c58fd8c6faf85a89a19a0358c315dc8909098e7/.github/workflows/main.yml#L31-L60
 [22]: https://github.com/idea2app/React-MobX-Ant-Design-ts/issues/new/choose
 [23]: https://github.com/idea2app/React-MobX-Ant-Design-ts/projects

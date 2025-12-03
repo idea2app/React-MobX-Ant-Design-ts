@@ -156,7 +156,7 @@ export class RestTable<T extends DataObject> extends ObservedComponent<
       this.props;
 
     const checkable = deletable || typeof onCheck === 'function',
-      { t } = this.props.translator,
+      { t } = props.translator,
       { downloading, pageSize, pageIndex, totalCount = 0, currentPage } = store;
 
     return (

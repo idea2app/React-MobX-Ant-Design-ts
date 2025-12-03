@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { PageBox } from '../component/PageBox';
-import HomePage from './Home';
+import { HomePage } from './Home';
 import { PaginationPage } from './Pagination';
 import { ScrollListPage } from './ScrollList';
 

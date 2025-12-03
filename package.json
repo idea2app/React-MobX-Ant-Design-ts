@@ -15,6 +15,7 @@
     "@ant-design/icons": "^6.1.0",
     "antd": "^6.0.1",
     "browser-unhandled-rejection": "^1.0.2",
+    "idb-keyval": "^6.2.2",
     "koajax": "^3.1.2",
     "lodash": "^4.17.21",
     "mobx": "^6.15.0",
@@ -24,8 +25,9 @@
     "mobx-react-helper": "^0.5.1",
     "mobx-restful": "^2.1.4",
     "mobx-restful-table": "^2.6.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "preact": "^10.28.0",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
     "react-router": "^7.10.0",
     "react-router-class-tools": "^0.2.1",
     "react-router-dom": "^7.10.0",
@@ -55,6 +57,11 @@
       "lmdb",
       "msgpackr-extract"
     ]
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
   },
   "@parcel/resolver-default": {
     "packageExports": true
